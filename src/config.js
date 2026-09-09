@@ -1,0 +1,36 @@
+require('dotenv').config();
+
+module.exports = {
+  token: process.env.bot_token,
+  server_owner_id: process.env.server_owner_id,
+  admin_role_id: process.env.admin_role_id,
+  prefix: ';',
+  embedColor: 0x2b2d31,
+  embedColorError: 0xed4245,
+  embedColorSuccess: 0x57f287,
+  embedColorInfo: 0x5865f2,
+  embedColorWarn: 0xfee75c,
+  embedColorTemp: 0xeb459e,
+  embedColorXP: 0xf47fff,
+  xpPerMessage: { min: 15, max: 25 },
+  xpCooldown: 30000,
+  maxLevel: 500,
+  maxXPPerLevel: 50000,
+  defaultMaxWarns: 5,
+  commandCooldown: 3000,
+  automod: {
+    spamThreshold: 5,
+    spamTimeframe: 5000,
+    floodLength: 500,
+    mentionThreshold: 5,
+    linkWhitelist: ['youtube.com', 'youtu.be', 'github.com', 'twitch.tv', 'twitter.com', 'x.com', 'tiktok.com'],
+  },
+  antinuke: {
+    channelDeleteThreshold: 4,
+    channelDeleteTimeframe: 1000,
+    roleDeleteThreshold: 4,
+    roleDeleteTimeframe: 1000,
+    messageDeleteThreshold: 5,
+    messageDeleteTimeframe: 1000,
+  },
+};
