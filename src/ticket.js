@@ -1,4 +1,4 @@
-const { ChannelType, PermissionFlagsBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { ChannelType, PermissionFlagsBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
 const db = require('./database');
 const config = require('./config');
 const { t } = require('./languages');
@@ -15,6 +15,41 @@ function canManageTicket(channel, member) {
   if (supportRole && member.roles && member.roles.cache && member.roles.cache.has(supportRole)) return true;
   const ownerKey = member.user.username.toLowerCase().replace(/[^a-z0-9]/g, '_');
   return channel.name === `ticket-${ownerKey}` || channel.name.startsWith(`ticket-${ownerKey}-`);
+}
+
+function canCloseTicket(channel, member) {
+  return isAdmin(channel.guild, member);
+}
+
+function buildCloseModal(guildId) {
+  return new ModalBuilder()
+    .setCustomId('ticket_close_modal')
+    .setTitle(t(guildId, 'ticket_modal_title'))
+    .addComponents(
+      new ActionRowBuilder().addComponents(
+        new TextInputBuilder()
+          .setCustomId('ticket_close_reason')
+          .setLabel(t(guildId, 'ticket_modal_reason_label'))
+          .setStyle(TextInputStyle.Paragraph)
+          .setPlaceholder(t(guildId, 'ticket_modal_reason_placeholder'))
+          .setMinLength(1)
+          .setMaxLength(1000)
+          .setRequired(true),
+      ),
+    );
+}
+
+async function getTicketCreatorId(channel) {
+  if (channel.topic && /^\d{15,}$/.test(channel.topic)) return channel.topic;
+  try {
+    const messages = await channel.messages.fetch({ limit: 1 });
+    const first = messages.first();
+    if (first && first.content) {
+      const match = first.content.match(/^<(?:@|@!)(\d+)>$/);
+      if (match) return match[1];
+    }
+  } catch {}
+  return null;
 }
 
 async function createTicket(guild, user, reason, client) {
@@ -42,11 +77,27 @@ async function createTicket(guild, user, reason, client) {
   if (supportRole) {
     overwrites.push({ id: supportRole, allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.SendMessages, PermissionFlagsBits.ReadMessageHistory] });
   }
+  
+  if (config.admin_role_id) {
+    const adminRoleIds = Array.isArray(config.admin_role_id)
+      ? config.admin_role_id
+      : String(config.admin_role_id).split(',').map(id => id.trim()).filter(Boolean);
+
+    for (const roleId of adminRoleIds) {
+      if (roleId) {
+        overwrites.push({
+          id: roleId,
+          allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.SendMessages, PermissionFlagsBits.ReadMessageHistory]
+        });
+      }
+    }
+  }
 
   const channel = await guild.channels.create({
     name,
     type: ChannelType.GuildText,
     parent: categoryId || undefined,
+    topic: user.id,
     permissionOverwrites: overwrites,
   });
 
@@ -62,7 +113,22 @@ async function createTicket(guild, user, reason, client) {
     new ButtonBuilder().setCustomId('ticket_close').setLabel(t(guild.id, 'ticket_close_btn')).setEmoji('🔒').setStyle(ButtonStyle.Danger),
   );
 
-  await channel.send({ content: `<@${user.id}>`, embeds: [embed], components: [row] });
+  // Build content with user mention and admin role mentions
+  let content = `<@${user.id}>`;
+
+  if (config.admin_role_id) {
+    const adminRoleIds = Array.isArray(config.admin_role_id)
+      ? config.admin_role_id
+      : String(config.admin_role_id).split(',').map(id => id.trim()).filter(Boolean);
+
+    for (const roleId of adminRoleIds) {
+      if (roleId) {
+        content += ` <@&${roleId}>`;
+      }
+    }
+  }
+
+  await channel.send({ content: content, embeds: [embed], components: [row] });
 
   const logEmbed = buildLogEmbed(guild.id, `🎫 ${t(guild.id, 'ticket_log_open')}`, [
     { name: t(guild.id, 'ticket_log_user'), value: user.toString(), inline: true },
@@ -95,7 +161,25 @@ async function closeTicket(channel, member, reason) {
   ], config.embedColorWarn);
   await logToChannel(guildId, member.client || channel.client, logEmbed);
 
+  const client = member.client || channel.client;
+  const creatorId = await getTicketCreatorId(channel);
+  if (creatorId) {
+    try {
+      const creator = await client.users.fetch(creatorId);
+      const dmEmbed = new EmbedBuilder()
+        .setColor(config.embedColorInfo)
+        .setTitle(t(guildId, 'ticket_dm_closed_title'))
+        .setDescription(t(guildId, 'ticket_dm_closed_body', {
+          server: channel.guild.name,
+          closedBy: member.toString(),
+          reason: reason || t(guildId, 'ticket_dm_reason_unspecified'),
+        }))
+        .setTimestamp();
+      await creator.send({ embeds: [dmEmbed] });
+    } catch {}
+  }
+
   return channel;
 }
 
-module.exports = { isTicketChannel, canManageTicket, createTicket, closeTicket };
+module.exports = { isTicketChannel, canManageTicket, canCloseTicket, buildCloseModal, createTicket, closeTicket };

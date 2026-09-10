@@ -51,6 +51,7 @@ async function checkExpiredActions(client) {
 
 function startScheduler(client) {
   console.log('$LumiyaBot: Scheduler started! checking every 60s');
+  console.log('What is it? Answer: Its a counter that checks every 60 seconds for tempban, tempmute, temprole actions that have expired and removes them.');
   setInterval(() => checkExpiredActions(client), 60000);
 }
 

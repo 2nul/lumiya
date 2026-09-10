@@ -2,7 +2,7 @@ const { Events, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = r
 const config = require('../config');
 const { t } = require('../languages');
 const { isAdmin } = require('../permissions');
-const { isTicketChannel, canManageTicket, createTicket, closeTicket } = require('../ticket');
+const { isTicketChannel, canCloseTicket, buildCloseModal, createTicket, closeTicket } = require('../ticket');
 
 const commandCooldowns = new Map();
 
@@ -46,15 +46,28 @@ module.exports = {
       if (interaction.customId === 'ticket_close') {
         if (!isTicketChannel(interaction.channel)) return;
         if (!interaction.member || !interaction.member.roles || !interaction.member.user) return;
-        if (!canManageTicket(interaction.channel, interaction.member)) {
+        if (!canCloseTicket(interaction.channel, interaction.member)) {
           return interaction.reply({ content: t(interaction.guild.id, 'no_permission'), ephemeral: true });
         }
-        await interaction.update({ components: [] });
-        await closeTicket(interaction.channel, interaction.member, null);
+        return interaction.showModal(buildCloseModal(interaction.guild.id));
+      }
+
+      return;
+    }
+
+    if (interaction.isModalSubmit()) {
+      if (interaction.customId === 'ticket_close_modal') {
+        if (!isTicketChannel(interaction.channel)) return;
+        if (!interaction.member || !interaction.member.roles || !interaction.member.user) return;
+        if (!canCloseTicket(interaction.channel, interaction.member)) {
+          return interaction.reply({ content: t(interaction.guild.id, 'no_permission'), ephemeral: true });
+        }
+        const reason = interaction.fields.getTextInputValue('ticket_close_reason');
+        await interaction.reply({ content: t(interaction.guild.id, 'ticket_closing_soon') });
+        await closeTicket(interaction.channel, interaction.member, reason);
         setTimeout(() => interaction.channel.delete().catch(() => {}), 3000);
         return;
       }
-
       return;
     }
 

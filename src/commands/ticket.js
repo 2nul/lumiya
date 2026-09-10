@@ -3,7 +3,7 @@ const db = require('../database');
 const config = require('../config');
 const { t } = require('../languages');
 const { isAdmin } = require('../permissions');
-const { isTicketChannel, canManageTicket, createTicket, closeTicket } = require('../ticket');
+const { isTicketChannel, canManageTicket, canCloseTicket, buildCloseModal, createTicket, closeTicket } = require('../ticket');
 
 async function sendPanel(channel) {
   const embed = new EmbedBuilder()
@@ -31,8 +31,7 @@ module.exports = {
       .addStringOption(opt => opt.setName('reason').setDescription('Reason for the ticket')))
     .addSubcommand(sub => sub
       .setName('close')
-      .setDescription('Close the current ticket')
-      .addStringOption(opt => opt.setName('reason').setDescription('Closing reason')))
+      .setDescription('Close the current ticket (admins only)'))
     .addSubcommand(sub => sub
       .setName('add')
       .setDescription('Add a member to the ticket')
@@ -104,11 +103,15 @@ module.exports = {
     }
 
     if (sub === 'close') {
-      if (!canManageTicket(message.channel, message.member)) {
+      if (!canCloseTicket(message.channel, message.member)) {
         const embed = new EmbedBuilder().setColor(config.embedColorError).setDescription(t(message.guild.id, 'no_permission'));
         return message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } });
       }
       const reason = args.slice(1).join(' ') || null;
+      if (!reason) {
+        const embed = new EmbedBuilder().setColor(config.embedColorError).setDescription(t(message.guild.id, 'ticket_close_need_reason'));
+        return message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } });
+      }
       const embed = new EmbedBuilder().setColor(config.embedColorSuccess).setDescription(t(message.guild.id, 'ticket_closing_soon'));
       await message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } });
       await closeTicket(message.channel, message.member, reason);
@@ -191,14 +194,10 @@ module.exports = {
     }
 
     if (sub === 'close') {
-      if (!canManageTicket(interaction.channel, interaction.member)) {
+      if (!canCloseTicket(interaction.channel, interaction.member)) {
         return interaction.reply({ content: t(interaction.guild.id, 'no_permission'), ephemeral: true });
       }
-      const reason = interaction.options.getString('reason') || null;
-      await interaction.reply({ content: t(interaction.guild.id, 'ticket_closing_soon') });
-      await closeTicket(interaction.channel, interaction.member, reason);
-      setTimeout(() => interaction.channel.delete().catch(() => {}), 3000);
-      return;
+      return interaction.showModal(buildCloseModal(interaction.guild.id));
     }
 
     if (sub === 'add' || sub === 'remove') {
