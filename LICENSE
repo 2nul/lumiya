@@ -1,31 +1,178 @@
-Non-Commercial Attribution License
+Lumiya Non-Commercial Attribution License
 
 Copyright © 2026 2nul
 
+1. DEFINITIONS
+
+"Software" means the Lumiya Discord bot, its source code, documentation,
+configuration, assets, and associated files distributed by the original
+author.
+
+"Original Project" means Lumiya.
+
+"Original Author" means 2nul.
+
+"Derivative Work" means any modified, adapted, extended, translated,
+reorganized, or otherwise altered version of the Software, including
+projects based substantially on the Software or its source code.
+
+"Attribution" means clear and visible credit identifying the Original
+Project as "Lumiya" and the Original Author as "2nul".
+
+2. GRANT OF PERMISSION
+
 Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files, to use,
-copy, modify, merge, publish, distribute, and create derivative works
-of the Software, subject to the following conditions:
+a copy of the Software, to use, copy, modify, fork, self-host, publish,
+distribute, and create Derivative Works of the Software, subject to the
+terms and conditions of this License.
 
-1. The Software and any derivative work may only be used for
-   non-commercial purposes.
+3. NON-COMMERCIAL USE
 
-2. Any redistribution or publication of the Software or a derivative
-   work must retain the original project name and the original
-   copyright and author attribution.
+The Software and all Derivative Works may only be used for
+non-commercial purposes unless explicit permission is granted by the
+Original Author.
 
-3. Any derivative work must clearly state that it is modified from
-   the original project and must retain the name of the original
-   project and its original author.
+Commercial use includes, but is not limited to:
 
-4. No person may represent a derivative work as an official release
-   of the original project without explicit permission from the
-   original author.
+- Selling the Software or a Derivative Work
+- Selling access to the Software or a Derivative Work
+- Using the Software as part of a paid product or service
+- Paid hosting or commercial bot hosting
+- Offering the Software as a paid SaaS or hosted service
+- Incorporating the Software into a commercial product or service
+- Using the Software primarily for commercial gain
 
-5. Commercial use, sale, licensing for commercial purposes, paid
-   hosting, or incorporation into a commercial product or service
-   is not permitted without explicit permission from the original
-   author.
+The Original Author may grant separate written permission for
+commercial use.
 
-6. The original author may separately grant permission for uses
-   prohibited by this license.
+4. ATTRIBUTION REQUIREMENT
+
+Attribution is required for every use of the Software or any
+substantial portion of its source code.
+
+Any person or project using, publishing, distributing, forking, or
+creating a Derivative Work from the Software must provide clear and
+visible Attribution to the Original Project and Original Author.
+
+Attribution must identify:
+
+    Lumiya
+    by 2nul
+
+A suitable form of Attribution is:
+
+    Based on Lumiya by 2nul.
+
+Attribution must not be removed, hidden, or intentionally obscured.
+
+5. DERIVATIVE WORKS
+
+Derivative Works are permitted provided that they comply with this
+License.
+
+A Derivative Work may:
+
+- Be modified substantially
+- Add or remove features
+- Use a different bot name
+- Use different branding
+- Be published under a different repository name
+- Be distributed as a separate project
+
+However, the required Attribution to Lumiya and 2nul must remain.
+
+Derivative Works must also clearly indicate that they are modified
+from or based on the original Lumiya project when the relationship
+would otherwise be unclear.
+
+6. LICENSE PRESERVATION
+
+A copy of this License must be included with any distribution of the
+Software or any Derivative Work containing a substantial portion of
+the original source code.
+
+The copyright notice and Attribution requirements of this License may
+not be removed from redistributed copies of the original Software.
+
+7. NO OFFICIAL ENDORSEMENT
+
+A Derivative Work must not be represented as:
+
+- An official Lumiya release
+- An official Lumiya version
+- A project maintained by 2nul
+- A project endorsed by 2nul
+
+without explicit permission from the Original Author.
+
+The names, branding, identity, or other representations of Lumiya or
+2nul must not be used in a manner that falsely suggests official
+endorsement or affiliation.
+
+8. NO REMOVAL OF ATTRIBUTION
+
+No person may remove, replace, or conceal the required Attribution for
+the purpose of making the Software or a Derivative Work appear to be
+entirely their own work.
+
+Changing the name, branding, appearance, structure, or functionality
+of a Derivative Work does not remove the Attribution requirement.
+
+9. ADDITIONAL PERMISSIONS
+
+The Original Author may grant additional permissions or exceptions
+to any person or project in writing.
+
+Such permission may allow uses that are otherwise prohibited by this
+License.
+
+10. TERMINATION
+
+Any rights granted under this License automatically terminate if the
+terms of this License are violated.
+
+Rights may be restored if the violation is corrected and the Original
+Author explicitly permits continued use.
+
+11. DISCLAIMER OF WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND
+NON-INFRINGEMENT.
+
+THE ORIGINAL AUTHOR MAKES NO GUARANTEE THAT THE SOFTWARE WILL BE
+ERROR-FREE, SECURE, RELIABLE, AVAILABLE, OR SUITABLE FOR ANY
+PARTICULAR PURPOSE.
+
+12. LIMITATION OF LIABILITY
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE ORIGINAL
+AUTHOR SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, LOSSES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE,
+ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+OR OTHER DEALINGS IN THE SOFTWARE.
+
+THIS INCLUDES, WITHOUT LIMITATION, LOSS OF DATA, LOSS OF PROFITS,
+ACCOUNT OR SERVER RESTRICTIONS, SERVICE INTERRUPTIONS, SECURITY
+INCIDENTS, OR OTHER DAMAGES RESULTING FROM THE USE OR INABILITY TO
+USE THE SOFTWARE.
+
+13. ACCEPTANCE
+
+By using, copying, modifying, forking, distributing, or creating a
+Derivative Work from the Software, you agree to be bound by the terms
+of this License.
+
+If you do not agree to these terms, you may not use, copy, modify,
+distribute, or create Derivative Works from the Software.
+
+14. COPYRIGHT
+
+Copyright © 2026 2nul
+
+Original Project:
+Lumiya
+
+Original Author:
+2nul
