@@ -42,6 +42,6 @@ Please check the [LICENSE](LICENSE) for the exact terms and conditions.
 
 ## License
 
-Lumiya is distributed under a custom license.
+Lumiya is distributed under a custom license - Lumiya Non-Commercial Attribution License
 
 See [LICENSE](LICENSE) for more details.
