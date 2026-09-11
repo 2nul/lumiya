@@ -241,4 +241,6 @@ module.exports = {
   ticket_log_channel: '📌 Kênh',
   ticket_log_reason: '💬 Lý do',
   ticket_log_closed_by: 'Đóng bởi',
+  msg_restarting: 'Đang khởi động lại...',
+  msg_shuttingdown: 'Đang tắt bot...',
 };

@@ -241,4 +241,6 @@ module.exports = {
   ticket_log_channel: '📌 Channel',
   ticket_log_reason: '💬 Reason',
   ticket_log_closed_by: 'Closed by',
+  msg_restarting: 'Restarting...',
+  msg_shuttingdown: 'Shutting down...',
 };

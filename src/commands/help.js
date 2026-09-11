@@ -40,7 +40,7 @@ module.exports = {
 
     const categories = {
       moderation: ['ban', 'unban', 'kick', 'mute', 'unmute', 'warn', 'warnings', 'delwarn', 'case', 'tempban', 'temprole', 'purge', 'lock', 'unlock'],
-      utility: ['userinfo', 'serverinfo', 'help', 'editstatus', 'ticket'],
+      utility: ['userinfo', 'serverinfo', 'help', 'editstatus', 'ticket', 'restart', 'reboot', 'shutdown', 'stop', 'off'],
       settings: ['settings', 'setlog', 'setwelcome', 'setgoodbye', 'setautorole', 'setmaxwarn', 'lang', 'automod', 'antinuke'],
       xp: ['profile', 'leaderboard'],
       appeal: ['appeal', 'appeals', 'resolveappeal'],
@@ -61,6 +61,7 @@ module.exports = {
           const cmd = commands.get(n);
           return `\`${config.prefix}${n}\` - ${cmd.description || ''}`;
         }).join('\n'),
+        inline: true,
       };
     }).filter(Boolean);
 
