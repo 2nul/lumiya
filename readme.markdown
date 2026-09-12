@@ -1,47 +1,81 @@
-# Lumiya - A discord bot
+# Lumiya - A discord bot 🌸
 
-> A terrible Discord bot cooked by an idiot, me.. yah.
+> A tiny Discord bot cooked with questionable amounts of caffeine and love by an idiot (me lol)
 
-Lumiya is an open-source Discord bot that you can **use, self-host, fork, and customize** for your own needs.
+**Lumiya** is an open-source Discord bot that you can **use, self-host, fork, and customize** however you like!
 
-The repository also serves as a **bot template**, so feel free to fork it, modify the source code, and build your own Discord bot on top of Lumiya.
+This repository is also meant to be a **bot template**, so if you see something you like, feel free to fork it, mess around with the code, add your own features, and turn Lumiya into something uniquely yours. ✨
 
 > [!WARNING]
-> Lumiya is currently in beta development, so there may be bugs, incomplete features, or breaking changes.
+> 🌱 **Lumiya is currently in beta!**
+>
+> Things might break. Features may be unfinished. Bugs may randomly appear out of nowhere and stare directly into your soul.
+>
+> If you find something broken, please let me know! I'd really appreciate it, and you may even get a little credit for helping make Lumiya better. 💖
 
-If you encounter a bug, I'd appreciate it if you let me know so I can fix it. You may also receive credit for helping improve the project.
+## ✨ Fork & Use
 
-## Fork & Use
+You're absolutely welcome to:
 
-You are welcome to:
+- 🍴 Fork the repository
+- 🖥️ Self-host Lumiya
+- 🛠️ Modify and customize the source code
+- 🌱 Use Lumiya as a starting point for your own Discord bot
+- 💕 Build, improve, and publish your own version
+- ✨ Experiment with the code and make it your own
 
-- Fork the repository
-- Self-host Lumiya
-- Modify and customize the source code
-- Use Lumiya as a starting point for your own Discord bot
-- Build and publish your own version
+Basically, if you want to take Lumiya and turn it into your own little bot creature, go for it!
 
-### Attribution
+### 💌 Attribution
 
 **Attribution is required wherever Lumiya or its source code is used.**
 
-If you use Lumiya, its source code, or any substantial portion of it in your own project, you must provide clear credit to the original project and its author.
+If you use Lumiya, its source code, or any substantial portion of it in your own project, please give clear credit to the original project and its author.
 
-A simple attribution such as the following is sufficient:
+A simple attribution like this is perfectly fine:
 
 > Based on Lumiya by 2nul.
 
-The attribution should remain visible in the project, repository, documentation, or other appropriate place where the original work is used.
+Please keep the attribution visible somewhere appropriate, such as your project, repository, documentation, credits page, or wherever the original work is being used.
+
+It's a small thing, but it means a lot. 🥺💗
 
 Please check the [LICENSE](LICENSE) for the exact terms and conditions.
 
-## Contact
+## 🎵 Credits
 
-- Email: [2nuldev@gmail.com](mailto:2nuldev@gmail.com)
-- Discord: [nyah2n](https://discord.com/users/810874313372467210)
+A very special thank you to **[umutxyp/MusicBot](https://github.com/umutxyp/MusicBot)** for the music/listening feature and for being part of the inspiration behind Lumiya's music functionality. 🎶💕
 
-## License
+Go give the original project some love too!
 
-Lumiya is distributed under a custom license - Lumiya Non-Commercial Attribution License
+- 🎧 MusicBot: https://github.com/umutxyp/MusicBot
 
-See [LICENSE](LICENSE) for more details.
+Huge thanks to the people who make cool open-source projects and let others learn from, build upon, and enjoy them. Open source is pretty awesome. 🌷
+
+## 📬 Contact
+
+Found a bug? Have an idea? Want to say hi?  
+Did Lumiya explode for absolutely no reason? 💀
+
+Feel free to reach out!
+
+- 💬 Discord: [nyah2n](https://discord.com/users/810874313372467210)
+
+Bug reports, suggestions, feedback, and random messages are all welcome.  
+I'll do my best to take a look! 💕
+
+## 📜 License
+
+Lumiya is distributed under a custom license:
+
+**Lumiya Non-Commercial Attribution License**
+
+In short: please have fun with Lumiya, build cool things with it, and remember to give credit where credit is due. 🌸
+
+For the full rules, conditions, and legal details, please read the [LICENSE](LICENSE) file.
+
+---
+
+Made with 💗, questionable coding decisions, and probably too much caffeine.
+
+**Lumiya** - a tiny Discord bot trying its best. 🌙✨

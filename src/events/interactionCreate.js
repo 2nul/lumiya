@@ -3,6 +3,7 @@ const config = require('../config');
 const { t } = require('../languages');
 const { isAdmin } = require('../permissions');
 const { isTicketChannel, canCloseTicket, buildCloseModal, createTicket, closeTicket } = require('../ticket');
+const { isMusicCommand, getMusicChannelId, musicChannelBlockEmbed } = require('../music/commandUtils');
 
 const commandCooldowns = new Map();
 
@@ -79,6 +80,14 @@ module.exports = {
     if (command.permissions && !isAdmin(interaction.guild, interaction.member)) {
       const embed = new EmbedBuilder().setColor(config.embedColorError).setDescription(t(interaction.guild.id, 'no_permission'));
       return interaction.reply({ embeds: [embed], ephemeral: true });
+    }
+
+    if (interaction.guild && isMusicCommand(interaction.commandName)) {
+      const musicChannelId = getMusicChannelId(interaction.guild.id);
+      if (musicChannelId && interaction.channelId !== musicChannelId) {
+        const embed = musicChannelBlockEmbed(interaction.guild.id, musicChannelId);
+        return interaction.reply({ embeds: [embed], ephemeral: true });
+      }
     }
 
     if (checkCooldown(interaction.user.id)) return;

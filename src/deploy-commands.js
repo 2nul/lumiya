@@ -1,7 +1,7 @@
 const { REST, Routes } = require('discord.js');
-const fs = require('fs');
 const path = require('path');
 const config = require('./config');
+const { getCommandFiles } = require('./commandLoader');
 
 const clientId = process.env.bot_client_id;
 if (!clientId) {
@@ -11,10 +11,10 @@ if (!clientId) {
 
 const commands = [];
 const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter(f => f.endsWith('.js'));
+const commandFiles = getCommandFiles(commandsPath);
 
 for (const file of commandFiles) {
-  const command = require(path.join(commandsPath, file));
+  const command = require(file);
   if (command.data) {
     commands.push(command.data.toJSON());
   }

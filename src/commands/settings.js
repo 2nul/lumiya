@@ -16,7 +16,7 @@ module.exports = {
     const s = db.getAllSettings(guildId);
 
     const yes = '✅';
-    const no = '❌';
+    const no = '';
     const off = '⬜';
 
     const embed = new EmbedBuilder()

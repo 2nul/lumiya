@@ -1,20 +1,20 @@
 const config = require('./config');
 
 function isServerOwner(guildId, userId) {
-  if (!config.server_owner_id) return false;
-  return String(config.server_owner_id) === String(userId);
+  if (!config.SERVER_OWNER_ID) return false;
+  return String(config.SERVER_OWNER_ID) === String(userId);
 }
 
 function isAdminRole(guildId, member) {
-  if (!config.admin_role_id || !member) return false;
-  if (!Array.isArray(config.admin_role_id)) {
-    const ids = String(config.admin_role_id).split(',').map(s => s.trim()).filter(Boolean);
+  if (!config.ADMIN_ROLE_ID || !member) return false;
+  if (!Array.isArray(config.ADMIN_ROLE_ID)) {
+    const ids = String(config.ADMIN_ROLE_ID).split(',').map(s => s.trim()).filter(Boolean);
     for (const id of ids) {
       if (member.roles && member.roles.cache && member.roles.cache.has(id)) return true;
     }
     return false;
   }
-  return config.admin_role_id.some(id => member.roles && member.roles.cache && member.roles.cache.has(id));
+  return config.ADMIN_ROLE_ID.some(id => member.roles && member.roles.cache && member.roles.cache.has(id));
 }
 
 function isAdmin(guild, member) {

@@ -1,7 +1,10 @@
 node_modules/
 data/
+src/audio_cache/
+bin/
 jspm_packages/
 web_modules/
+MusicBot/
 .env
 .env.local
 .env.development.local

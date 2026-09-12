@@ -1,7 +1,13 @@
 const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const config = require('../config');
-const { t } = require('../languages');
+const { t, getLang, translations } = require('../languages');
 const { isAdmin } = require('../permissions');
+
+function commandDesc(guildId, name, fallback) {
+  const lang = translations[getLang(guildId)] || translations.vi;
+  const desc = `command_descriptions.${name}`.split('.').reduce((o, k) => (o && o[k]) || undefined, lang);
+  return desc || fallback || name;
+}
 
 module.exports = {
   name: 'help',
@@ -30,7 +36,7 @@ module.exports = {
         .setColor(config.embedColorInfo)
         .setTitle(`${config.prefix}${cmd.name}`)
         .addFields(
-          { name: t(guildId, 'help_desc'), value: cmd.description || 'N/A' },
+          { name: t(guildId, 'help_desc'), value: commandDesc(guildId, cmd.name, cmd.description) || 'N/A' },
           { name: t(guildId, 'help_usage'), value: `\`${cmd.usage || config.prefix + cmd.name}\`` },
         )
         .setTimestamp();
@@ -41,9 +47,10 @@ module.exports = {
     const categories = {
       moderation: ['ban', 'unban', 'kick', 'mute', 'unmute', 'warn', 'warnings', 'delwarn', 'case', 'tempban', 'temprole', 'purge', 'lock', 'unlock'],
       utility: ['userinfo', 'serverinfo', 'help', 'editstatus', 'ticket', 'restart', 'reboot', 'shutdown', 'stop', 'off'],
-      settings: ['settings', 'setlog', 'setwelcome', 'setgoodbye', 'setautorole', 'setmaxwarn', 'lang', 'automod', 'antinuke'],
+      settings: ['settings', 'setlog', 'setwelcome', 'setgoodbye', 'setautorole', 'setmaxwarn', 'setmusicchannel', 'lang', 'automod', 'antinuke'],
       xp: ['profile', 'leaderboard'],
       appeal: ['appeal', 'appeals', 'resolveappeal'],
+      music: ['play', 'pause', 'resume', 'skip', 'musicstop', 'queue', 'nowplaying', 'volume', 'loop', 'shuffle', 'remove', 'clear', 'join', 'leave', 'seek'],
       tests: ['testsetxp', 'testresetxp', 'testfakecase'],
     };
 
@@ -59,7 +66,7 @@ module.exports = {
         name: t(guildId, `help_categories.${cat}`) || cat,
         value: filtered.map(n => {
           const cmd = commands.get(n);
-          return `\`${config.prefix}${n}\` - ${cmd.description || ''}`;
+          return `\`${config.prefix}${n}\` - ${commandDesc(guildId, n, cmd.description) || ''}`;
         }).join('\n'),
         inline: true,
       };

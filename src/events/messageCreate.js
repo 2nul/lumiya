@@ -4,6 +4,7 @@ const { t } = require('../languages');
 const { addXP, buildProfileEmbed, formatNum } = require('../xp');
 const automod = require('../automod');
 const { isAdmin } = require('../permissions');
+const { isMusicCommand, getMusicChannelId, musicChannelBlockEmbed } = require('../music/commandUtils');
 
 const commandCooldowns = new Map();
 
@@ -49,6 +50,14 @@ module.exports = {
     if (command.permissions && !isAdmin(message.guild, message.member)) {
       const embed = new EmbedBuilder().setColor(config.embedColorError).setDescription(t(guildId, 'no_permission'));
       return message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } });
+    }
+
+    if (isMusicCommand(commandName)) {
+      const musicChannelId = getMusicChannelId(guildId);
+      if (musicChannelId && message.channel.id !== musicChannelId) {
+        const embed = musicChannelBlockEmbed(guildId, musicChannelId);
+        return message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } });
+      }
     }
 
     if (checkCooldown(message.author.id)) return;

@@ -78,10 +78,10 @@ async function createTicket(guild, user, reason, client) {
     overwrites.push({ id: supportRole, allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.SendMessages, PermissionFlagsBits.ReadMessageHistory] });
   }
   
-  if (config.admin_role_id) {
-    const adminRoleIds = Array.isArray(config.admin_role_id)
-      ? config.admin_role_id
-      : String(config.admin_role_id).split(',').map(id => id.trim()).filter(Boolean);
+  if (config.ADMIN_ROLE_ID) {
+    const adminRoleIds = Array.isArray(config.ADMIN_ROLE_ID)
+      ? config.ADMIN_ROLE_ID
+      : String(config.ADMIN_ROLE_ID).split(',').map(id => id.trim()).filter(Boolean);
 
     for (const roleId of adminRoleIds) {
       if (roleId) {
@@ -113,13 +113,12 @@ async function createTicket(guild, user, reason, client) {
     new ButtonBuilder().setCustomId('ticket_close').setLabel(t(guild.id, 'ticket_close_btn')).setEmoji('🔒').setStyle(ButtonStyle.Danger),
   );
 
-  // Build content with user mention and admin role mentions
   let content = `<@${user.id}>`;
 
-  if (config.admin_role_id) {
-    const adminRoleIds = Array.isArray(config.admin_role_id)
-      ? config.admin_role_id
-      : String(config.admin_role_id).split(',').map(id => id.trim()).filter(Boolean);
+  if (config.ADMIN_ROLE_ID) {
+    const adminRoleIds = Array.isArray(config.ADMIN_ROLE_ID)
+      ? config.ADMIN_ROLE_ID
+      : String(config.ADMIN_ROLE_ID).split(',').map(id => id.trim()).filter(Boolean);
 
     for (const roleId of adminRoleIds) {
       if (roleId) {
