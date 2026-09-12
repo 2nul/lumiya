@@ -26,7 +26,55 @@ You're absolutely welcome to:
 
 Basically, if you want to take Lumiya and turn it into your own little bot creature, go for it!
 
-### 💌 Attribution
+## 🚀 Build & Run
+
+Want to run your own little Lumiya? Here's how! 🌸
+
+🛠️ Quick setup
+In short:
+```bash
+git clone https://github.com/2nul/lumiya.git
+cd lumiya
+npm install
+cp .env.example .env
+# edit .env and add your configuration
+npm run start
+```
+
+### Full setup:
+
+### 📦 1. Clone the repository
+
+```bash
+git clone https://github.com/2nul/lumiya.git
+cd lumiya
+```
+
+### 📚 2. Install dependencies
+Install all required packages with:
+```bash
+npm install
+```
+
+### 🔐 3. Configure environment variables
+Create a .env file in the project root.
+
+There's already a .env.example included in the repository to help you get started. Copy it and fill in the required values:
+```bash
+cp .env.example .env
+```
+Then open .env and add/configure the required values.
+> 💡 Tip: Never commit your .env file or expose your bot token publicly. Keep your secrets secret! 🔒
+
+### ▶️ 4. Start Lumiya
+Once everything is configured, start the bot with:
+```bash
+npm run start
+```
+If everything goes well, Lumiya should be up and ready to cause absolutely no problems whatsoever.
+(This statement has not been verified by science.) 💀🌸
+
+## 💌 Attribution
 
 **Attribution is required wherever Lumiya or its source code is used.**
 
